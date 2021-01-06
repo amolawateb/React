@@ -1,0 +1,13 @@
+Use Node.js command prompt
+
+node -v = return version
+npm install -g create-react-app = create new app -g is global
+
+go to project directory, if project dosent exists than use following commands
+
+create-react-app {project name} = create new project
+
+npm start project = run project
+
+
+
