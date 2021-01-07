@@ -8,12 +8,12 @@ import './index.css';
 //ReactDOM.render(element,document.getElementById('root'));
 
 const element = React.createElement(
-    "div",
-    null,
-    React.createElement("h1",{className:"textRed"},"Amol, Welcome to React Programming..."),
-    React.createElement("h1",{className:"textGreen"},"Understanding the Creation of Elements in React..."))
+  "div",
+  null,
+  React.createElement("h1", { className: "textRed" }, "Amol, Welcome to React Programming..."),
+  React.createElement("h1", { className: "textGreen" }, "Understanding the Creation of Elements in React..."))
 
-ReactDOM.render(element,document.getElementById('root'));
+ReactDOM.render(element, document.getElementById('root'));
 
 /////Following method uses jsx(javascript xml) to create element, and its converted to single js by babel; 
 //means one extra step
@@ -34,3 +34,79 @@ const element=(
 );
 
 ReactDOM.render(element,document.getElementById('root'));*/
+
+var DisplayEmployeeInfo = (employee) => {
+  return <div>
+    <h1>Employee Details</h1>
+    <p>
+      <label>Employee Id: <b>{employee.Id}</b></label>
+    </p>
+    <p>
+      <label>Employee Name: <b>{employee.Name}</b></label>
+    </p>
+    <p>
+      <label>Employee Location: <b>{employee.Location}</b></label>
+    </p>
+    <p>
+      <label>Employee Salary: <b>{employee.Salary}</b></label>
+    </p>
+    <DepartmentInfo DeptId={employee.DeptId} DeptName={employee.DeptName}></DepartmentInfo>
+  </div>;
+}
+
+var DepartmentInfo = (department) => {
+  return <div>
+    <p>
+      <label>Department Id: <b>{department.DeptId}</b></label>
+    </p>
+    <p>
+      <label>Department Name: <b>{department.DeptName}</b></label>
+    </p>
+  </div>;
+}
+
+const elementEmployee = <DisplayEmployeeInfo Id="100" Name="Amol" Location="Dublin"
+  Salary="45000" DeptId="1" DeptName="IT">
+</DisplayEmployeeInfo>
+
+ReactDOM.render(elementEmployee, document.getElementById("employee"));
+
+
+class Employees extends React.Component {
+  constructor(props)
+  {
+    super(props);
+    console.log(this.props);
+  }
+  render() {
+    return <div>
+      <h1>Employee Class Details</h1>
+      <p>
+        <label>Employee Id: <b>{this.props.Id}</b></label>
+      </p>
+      <p>
+        <label>Employee Name: <b>{this.props.Name}</b></label>
+      </p>
+      <p>
+        <label>Employee Location: <b>{this.props.Location}</b></label>
+      </p>
+      <p>
+        <label>Employee Salary: <b>{this.props.Salary}</b></label>
+      </p>
+      <Departments dId={this.props.DeptId} dName={this.props.DeptName}></Departments>
+    </div>
+  }
+}
+
+class Departments extends React.Component{
+  render()
+  {
+    return <div>
+      <p><label>Department Id: <b>{this.props.dId}</b></label></p>
+      <p><label>Department Name: <b>{this.props.dName}</b></label></p>
+    </div>
+  }
+}
+const classEmployee = <Employees Id="100" Name="Carol" Location="Cork" Salary="50000" DeptId="200" DeptName="BA"></Employees>
+ReactDOM.render(classEmployee,document.getElementById("classEmployee"));
+
