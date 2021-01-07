@@ -35,6 +35,7 @@ const element=(
 
 ReactDOM.render(element,document.getElementById('root'));*/
 
+//function compnenet------------------
 var DisplayEmployeeInfo = (employee) => {
   return <div>
     <h1>Employee Details</h1>
@@ -70,11 +71,11 @@ const elementEmployee = <DisplayEmployeeInfo Id="100" Name="Amol" Location="Dubl
 </DisplayEmployeeInfo>
 
 ReactDOM.render(elementEmployee, document.getElementById("employee"));
+//------------
 
-
+//class compnent--------
 class Employees extends React.Component {
-  constructor(props)
-  {
+  constructor(props) {
     super(props);
     console.log(this.props);
   }
@@ -98,9 +99,8 @@ class Employees extends React.Component {
   }
 }
 
-class Departments extends React.Component{
-  render()
-  {
+class Departments extends React.Component {
+  render() {
     return <div>
       <p><label>Department Id: <b>{this.props.dId}</b></label></p>
       <p><label>Department Name: <b>{this.props.dName}</b></label></p>
@@ -108,5 +108,42 @@ class Departments extends React.Component{
   }
 }
 const classEmployee = <Employees Id="100" Name="Carol" Location="Cork" Salary="50000" DeptId="200" DeptName="BA"></Employees>
-ReactDOM.render(classEmployee,document.getElementById("classEmployee"));
+ReactDOM.render(classEmployee, document.getElementById("classEmployee"));
+//----------------
 
+//state management----------
+class State extends React.Component {
+  state={counter:0};
+  addEmployee=()=>{
+    this.setState({counter:this.state.counter+1});
+    }
+  render() {
+    return <div>
+      <p><button onClick={this.addEmployee}>Add New Employee</button></p>
+      <p><label>Add Employee Button is Clicked: <b>{this.state.counter}</b></label></p>
+    </div>
+  }
+}
+
+const stateTutorial = <State></State>
+ReactDOM.render(stateTutorial, document.getElementById("state"));
+
+
+class CountChar extends React.Component {
+  state={message:''};
+  
+  onMessageChange(text){
+    this.setState({message:"Message has " + text.length + " number of characters"});
+    }
+
+  render() {
+    return <div>
+      <p><lable>Input Characters: <input type="text" onChange={e=>this.onMessageChange(e.target.value)}></input></lable></p>
+      <p><lable>{this.state.message}</lable></p>
+    </div>
+  }
+}
+
+const countChar = <CountChar></CountChar>
+ReactDOM.render(countChar, document.getElementById("countChar"));
+//--------------------
